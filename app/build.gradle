@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+//apply plugin: 'android-apt'
 apply plugin: 'realm-android'
 
 android {
@@ -14,6 +14,14 @@ android {
         versionName rootProject.ext.android.versionName
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
+
+
+        //注解处理器
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
     lintOptions {
@@ -61,15 +69,15 @@ android {
             signingConfig signingConfigs.release
         }
     }
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def fileName = outputFile.name.replace(".apk", "-${defaultConfig.versionName}.apk")
-                output.outputFile = new File(outputFile.parent, fileName)
-            }
-        }
-    }
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                def fileName = outputFile.name.replace(".apk", "-${defaultConfig.versionName}.apk")
+//                output.outputFile = new File(outputFile.parent, fileName)
+//            }
+//        }
+//    }
 }
 repositories {
     maven { url "https://jitpack.io" }
@@ -114,9 +122,9 @@ dependencies {
 
     //di
     compile rootProject.ext.dependencies["dagger"]
-    compile rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     compile rootProject.ext.dependencies["butterknife"]
-    apt rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     provided rootProject.ext.dependencies["annotation"]
     compile rootProject.ext.dependencies["annotations"]
 
