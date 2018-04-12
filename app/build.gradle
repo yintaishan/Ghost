@@ -4,7 +4,6 @@ apply plugin: 'realm-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
@@ -78,69 +77,70 @@ android {
 //            }
 //        }
 //    }
+    buildToolsVersion '27.0.3'
 }
 repositories {
     maven { url "https://jitpack.io" }
 }
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
     //base
-    compile rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["appcompat-v7"]
 
     //network
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["retrofit-converter-gson"]
-    compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
-    compile rootProject.ext.dependencies["okhttp-logging-interceptor"]
-    compile rootProject.ext.dependencies["glide"]
-    compile rootProject.ext.dependencies["glide-transformations"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    api rootProject.ext.dependencies["okhttp-logging-interceptor"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide-transformations"]
     //rx
-    compile rootProject.ext.dependencies["rxjava"]
-    compile rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
 
     //ui
-    compile rootProject.ext.dependencies["easyrecyclerview"]
-    compile rootProject.ext.dependencies["rollviewpager"]
-    compile rootProject.ext.dependencies["smarttablayout"]
-    compile rootProject.ext.dependencies["smarttablayout:utils"]
-    compile rootProject.ext.dependencies["jiecaovideoplayer"]
-    compile rootProject.ext.dependencies["cardstack"]
-    compile rootProject.ext.dependencies["roundedimageview"]
-    compile rootProject.ext.dependencies["cardview"]
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
+    api rootProject.ext.dependencies["easyrecyclerview"]
+    api rootProject.ext.dependencies["rollviewpager"]
+    api rootProject.ext.dependencies["smarttablayout"]
+    api rootProject.ext.dependencies["smarttablayout:utils"]
+    api rootProject.ext.dependencies["jiecaovideoplayer"]
+    api rootProject.ext.dependencies["cardstack"]
+    api rootProject.ext.dependencies["roundedimageview"]
+    api rootProject.ext.dependencies["cardview"]
+    api('com.github.afollestad.material-dialogs:core:0.8.5.4@aar') {
         transitive = true
     }
-    compile('com.github.afollestad.material-dialogs:commons:0.8.5.4@aar') {
+    api('com.github.afollestad.material-dialogs:commons:0.8.5.4@aar') {
         transitive = true
     }
 
-    compile rootProject.ext.dependencies["iconics-core"]
-    compile rootProject.ext.dependencies["material-design-iconic-typeface"]
-    compile rootProject.ext.dependencies["fontawesome-typeface"]
-    compile rootProject.ext.dependencies["foundation-icons-typeface"]
+    api rootProject.ext.dependencies["iconics-core"]
+    api rootProject.ext.dependencies["material-design-iconic-typeface"]
+    api rootProject.ext.dependencies["fontawesome-typeface"]
+    api rootProject.ext.dependencies["foundation-icons-typeface"]
 
     //di
-    compile rootProject.ext.dependencies["dagger"]
+    api rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-    compile rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    provided rootProject.ext.dependencies["annotation"]
-    compile rootProject.ext.dependencies["annotations"]
+    compileOnly rootProject.ext.dependencies["annotation"]
+    api rootProject.ext.dependencies["annotations"]
 
     //other
-    compile rootProject.ext.dependencies["logger"]
-    compile rootProject.ext.dependencies["fragmentation"]
-    compile rootProject.ext.dependencies["androideventbus"]
+    api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["fragmentation"]
+    api rootProject.ext.dependencies["androideventbus"]
 
-    compile rootProject.ext.dependencies["pgyersdk"]
-    compile rootProject.ext.dependencies["slf4j"]
+    api rootProject.ext.dependencies["pgyersdk"]
+    api rootProject.ext.dependencies["slf4j"]
 
     //canary
-    debugCompile rootProject.ext.dependencies["blockcanary-android"]
-    releaseCompile rootProject.ext.dependencies["blockcanary-no-op"]
-    debugCompile rootProject.ext.dependencies["leakcanary-android"]
-    releaseCompile rootProject.ext.dependencies["leakcanary-android-no-op"]
+    debugImplementation rootProject.ext.dependencies["blockcanary-android"]
+    releaseImplementation rootProject.ext.dependencies["blockcanary-no-op"]
+    debugImplementation rootProject.ext.dependencies["leakcanary-android"]
+    releaseImplementation rootProject.ext.dependencies["leakcanary-android-no-op"]
 
 
 }
